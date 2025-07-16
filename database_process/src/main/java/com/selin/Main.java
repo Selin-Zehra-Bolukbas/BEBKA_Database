@@ -38,6 +38,33 @@ public class Main {
                 System.out.println(resultSet.getString("email"));
             }
 
+            // update [JA-7]
+            String updatesql= "UPDATE users SET name=? WHERE id=?";
+            PreparedStatement preparedUpdate = connection.prepareStatement(updatesql);
+            preparedUpdate.setString(1,"Mehmet");
+            preparedUpdate.setInt(2,1);
+
+            int affectedRows = preparedUpdate.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Kayıt başarıyla güncellendi.");
+            } else {
+                System.out.println("Güncelleme yapılamadı.");
+            }
+
+            // delete  [JA-7]
+            String deletesql= "DELETE FROM users WHERE id=?";
+            PreparedStatement preparedDelete = connection.prepareStatement(deletesql);
+            preparedDelete.setInt(1,3);
+
+            int affectedRowsDeleted = preparedDelete.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Kayıt başarıyla silindi.");
+            } else {
+                System.out.println("Silinecek kayıt bulunamadı.");
+            }
+
         }catch (Exception e){
             e.printStackTrace();
         }
