@@ -23,7 +23,7 @@ public class Main {
             statement.execute(sql);
             System.out.println("Tablo oluşturuldu.");
 
-
+           // prepared statement
             String insertsql= "INSERT INTO users(name,email) VALUES(?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertsql);
             preparedStatement.setString(1,"Ali");
